@@ -27,6 +27,20 @@ Express application generator
 It's part of npm to help developers run packages without installing them
 
 We run the Express Application Generator (locally):
+- Navigate to your local location where you want to create the main container folder. 
+- Create a new folder that will act as the main container to contain the project folder later
+
+This main container folder will be used for:
+- Installing the Express project using the npm/npx as explained below
+- Creating the actual Express project folder
+
+Notice that:
+- My main folder name is "express-application" as the current repo name.
+- My actual Express application folder is "auto-gen-express-app" inside the current repo (main) folder
+
+
+Inside the main folder "express-application" in my case, run the commands:
+
 > npm install express-generator
 or you can run the application generator with the npx command (available in Node.js 8.2.0).
 > npx install express-generator
@@ -39,7 +53,7 @@ NOTES:
   - node_modules folder
   - package-lock.json
   - package.json
-- It's unnecessary to commit any folder that included installed packages, as these packages should be installed properly, so we ignore the folder(s) "node_modules"
+- It's unnecessary to commit (push to Github) any folder that included installed packages, as these packages should be installed properly, so we ignore the folder(s) "node_modules" with ".gitignore"
 
 Now after running the command "npm install express-generator", the repo folder will have the following:
 - The initial git files:
@@ -47,7 +61,7 @@ Now after running the command "npm install express-generator", the repo folder w
     - .gitignore
     - the hidden folder ".git"
 - The express-generator files:
-    - node_modules folder
+    - node_modules (folder)
     - package-lock.json
     - package.json 
 
@@ -66,12 +80,29 @@ to see all the options, these options are also called "flags":
         --git           add .gitignore
     -f, --force         force on non-empty directory
 
-5. Now you are ready to create the actual project folder where you will need to deploy later, by running the command express then the option(s) you want to include:
+NOTE: [What view engine should I use?](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/skeleton_website#what_view_engine_should_i_use)
+The Express Application Generator allows you to configure a number of popular view/templating engines.
+The templating engines include:
+- EJS
+- Hbs
+- Pug (Jade)
+- Twig
+- Vash
+
+The "express-generator" chooses Jade by default if you don't specify a view option. Express itself can also support a large number of other templating languages out of the box.
+
+Generally speaking, you should select a templating engine that delivers all the functionality you need and allows you to be productive sooner — or in other words, in the same way that you choose any other component!
+
+5. Now you are ready to create the "actual project folder" where you will need to deploy later, by running the command express then the option(s) you want to include. Notice that by default, express generator will pick/use "pug" as the templating engine to render our HTML files, or you can specify which one you want to use.
+
+In the example below, we used "--hbs" to install the handlebars engine which reminds us with AngularJS template by using mustache template {{ }}:
+
 > express --git --hbs auto-gen-express-app
-the command above has the following:
+
+the command above has the following 2 flags with the name:
     - --git flag for adding git ignore
     - --hbs flag for adding handlebars engine support [(handlebars template engine)](https://handlebarsjs.com/)
-    - auto-gen-express-app is the folder name where we want our application files/folders to be installed. Yes, I know I put a long name "auto-gen-express-app" just for demonstration
+    - auto-gen-express-app is the folder name where we want our application files/folders to be installed. Yes, I know I put a long name "auto-gen-express-app" just for demonstration :-)
 
 Now the content of the repo folder "express-applications" included a new a folder named "auto-gen-express-app":
 - auto-gen-express-app
@@ -111,8 +142,12 @@ Now the content of the repo folder "express-applications" included a new a folde
 7. Then install dependencies inside the project/application folder "auto-gen-express-app":
 > npm install
 This command will add the following new contents:
-- node_modules/ folder <==> The node modules 
+- node_modules/ folder <==> The node modules (packages)
+- public/ folder <==> images, javascripts, and stylesheets
+    - style.css <==> contains only two basic rules 
+- routes/ folder <==> index.js and users.js (the default routes)
 - package-lock.json
+- app.js <==> the entry point to our application
 
 So the final content of our application folder will be:
 - app.js  
@@ -154,6 +189,7 @@ Notice the content of the json file within the actual application folder:
 }
 ```
 8. Running our application based on the command below from Express Docs (Guide):
+NOTE: make sure you are inside the actual project folder
     - On MacOS or Linux, run the app with this command:
         > DEBUG=myapp:* npm start
     
@@ -163,7 +199,7 @@ Notice the content of the json file within the actual application folder:
     - On Windows PowerShell, use this command:
         > $env:DEBUG='myapp:*'; npm start
     
-NOTE: Don't forget to change the name "myapp" with your application name like "auto-gen-express-app"
+NOTE: Don't forget to change the name "myapp" with your application name like "auto-gen-express-app" for me:
     - I am using powershell, so the command will be:
         > $env:DEBUG='auto-gen-express-app:*'; npm start
 
