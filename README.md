@@ -38,7 +38,6 @@ Notice that:
 - My main folder name is "express-application" as the current repo name.
 - My actual Express application folder is "auto-gen-express-app" inside the current repo (main) folder
 
-
 Inside the main folder "express-application" in my case, run the commands:
 
 > npm install express-generator
@@ -46,7 +45,9 @@ or you can run the application generator with the npx command (available in Node
 > npx install express-generator
 
 I used this command:
+```
 > npm install express-generator
+```
 
 NOTES: 
 - Running this command will generate the following contents:
@@ -66,14 +67,17 @@ Now after running the command "npm install express-generator", the repo folder w
     - package.json 
 
 4. You can run this command:
+```
 > express -h 
+```
 to see all the options, these options are also called "flags":
 
   Options:
 
     -h, --help          output usage information
     -V, --version       output the version number
-    -e, --ejs           add ejs engine support (defaults to jade)
+    -e, --ejs           add ejs engine support 
+        --pug           add pug engine support(defaults to jade)
         --hbs           add handlebars engine support
     -H, --hogan         add hogan.js engine support
     -c, --css <engine>  add stylesheet <engine> support (less|stylus|compass|sass) (defaults to plain css)
@@ -96,10 +100,10 @@ Generally speaking, you should select a templating engine that delivers all the 
 5. Now you are ready to create the "actual project folder" where you will need to deploy later, by running the command express then the option(s) you want to include. Notice that by default, express generator will pick/use "pug" as the templating engine to render our HTML files, or you can specify which one you want to use.
 
 In the example below, we used "--hbs" to install the handlebars engine which reminds us with AngularJS template by using mustache template {{ }}:
-
+```
 > express --git --hbs auto-gen-express-app
-
-the command above has the following 2 flags with the name:
+```
+The command above has the following 2 flags with the name:
     - --git flag for adding git ignore
     - --hbs flag for adding handlebars engine support [(handlebars template engine)](https://handlebarsjs.com/)
     - auto-gen-express-app is the folder name where we want our application files/folders to be installed. Yes, I know I put a long name "auto-gen-express-app" just for demonstration :-)
@@ -139,8 +143,10 @@ Now the content of the repo folder "express-applications" included a new a folde
 }
 ```
 
-7. Then install dependencies inside the project/application folder "auto-gen-express-app":
+7. Then install dependencies inside the actual project/application folder "auto-gen-express-app":
+```
 > npm install
+```
 This command will add the following new contents:
 - node_modules/ folder <==> The node modules (packages)
 - public/ folder <==> images, javascripts, and stylesheets
@@ -199,9 +205,14 @@ NOTE: make sure you are inside the actual project folder
     - On Windows PowerShell, use this command:
         > $env:DEBUG='myapp:*'; npm start
     
-NOTE: Don't forget to change the name "myapp" with your application name like "auto-gen-express-app" for me:
+NOTES: 
+- Don't forget to change the name "myapp" with your application name like "auto-gen-express-app" for me
+- You need to be inside the actual express application folder which is in my case "auto-gen-express-app" in order to run this command:
+
     - I am using powershell, so the command will be:
+    ```
         > $env:DEBUG='auto-gen-express-app:*'; npm start
+    ```
 
 You will see this message: auto-gen-express-app:server Listening on port 3000 +0ms
 
